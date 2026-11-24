@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NELA TICKET | Enter Movie Dimension</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Cinzel for Cinematic Headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            cinematic: ['Cinzel', 'serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              crimson: '#E11D48',
+              dark: '#07090E',
+              card: '#111622',
+              surface: '#192030',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom scrollbar and sleek animations */
+    body {
+      background-color: #07090E;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07090E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E11D48;
+    }
+
+    /* Gateway portal animations */
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 25px rgba(225, 29, 72, 0.5), 0 0 60px rgba(245, 158, 11, 0.25);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(225, 29, 72, 0.8), 0 0 90px rgba(245, 158, 11, 0.45);
+        transform: scale(1.03);
+      }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .portal-btn {
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+
+    .float-slow {
+      animation: floatSlow 5s infinite ease-in-out;
+    }
+
+    /* Poster aspect ratio and hover polish */
+    .poster-wrapper {
+      aspect-ratio: 2 / 3;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #131B2E 0%, #090D16 100%);
+    }
+
+    .movie-card {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+    .movie-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(225, 29, 72, 0.25);
+    }
+
+    .movie-card img {
+      transition: transform 0.5s ease;
+    }
+    .movie-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Hide scrollbar for horizontal category bar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-rose-600 selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- 1. LANDING GATEWAY: "ENTER TO MOVIE DIMENSION"                        -->
+  <!-- ===================================================================== -->
+  <section id="dimensionGateway" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#05070B] text-center px-6 transition-all duration-700">
+    <!-- Ambient Cinematic Backdrop Grid & Radial Lights -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-600/20 rounded-full blur-[120px]"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-[120px]"></div>
+      <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <!-- Gateway Content -->
+    <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+      <!-- Ticket Emblem -->
+      <div class="float-slow mb-6 inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-amber-400 text-xs sm:text-sm font-semibold tracking-widest uppercase">
+        <i class="fa-solid fa-ticket text-rose-500"></i>
+        <span>First Class Cinema Experience</span>
+      </div>
+
+      <!-- Main Brand Title -->
+      <h1 class="font-cinematic text-5xl sm:text-7xl md:text-8xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-rose-500 drop-shadow-2xl mb-4">
+        NELA TICKET
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-xl max-w-xl mb-10 leading-relaxed font-light">
+        Step beyond the screen into an immersive universe of <span class="text-amber-400 font-medium">Tollywood Blockbusters</span>, <span class="text-rose-400 font-medium">Hollywood Epics</span>, and <span class="text-sky-400 font-medium">Legendary Anime</span>.
+      </p>
+
+      <!-- Enter Button -->
+      <button id="enterDimensionBtn" onclick="enterMovieDimension()" class="portal-btn group relative inline-flex items-center gap-4 px-8 sm:px-12 py-4 sm:py-5 rounded-full bg-gradient-to-r from-rose-600 via-red-600 to-amber-500 text-white font-bold text-base sm:text-lg tracking-wider uppercase cursor-pointer transition-all hover:brightness-110 active:scale-95">
+        <i class="fa-solid fa-film text-xl group-hover:rotate-12 transition-transform"></i>
+        <span>Enter to Movie Dimension</span>
+        <i class="fa-solid fa-arrow-right group-hover:translate-x-1.5 transition-transform"></i>
+      </button>
+
+      <!-- Featured Preview Strip -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Baahubali</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Salaar</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Kalki 2898 AD</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Pushpa 2</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Devara</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Avengers: Doomsday</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Anime</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. MAIN MOVIE APPLICATION INTERFACE                                   -->
+  <!-- ===================================================================== -->
+  <div id="mainApp" class="hidden min-h-screen flex flex-col">
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 bg-[#07090E]/90 backdrop-blur-xl border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+        <!-- Brand Logo -->
+        <div onclick="resetAllFilters()" class="flex items-center gap-2.5 cursor-pointer group shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-600/30 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-ticket text-white text-lg -rotate-12"></i>
+          </div>
+          <div>
+            <span class="font-cinematic font-black text-xl sm:text-2xl tracking-wider bg-gradient-to-r from-white via-amber-200 to-rose-400 bg-clip-text text-transparent">
+              NELA TICKET
+            </span>
+            <p class="text-[10px] text-slate-400 tracking-widest uppercase hidden sm:block">Movie Dimension</p>
+          </div>
+        </div>
+
+        <!-- Navigation View Switchers (All / Watchlist / Favorites) -->
+        <nav class="flex items-center gap-1.5 sm:gap-3">
+          <button onclick="switchCollectionView('all')" id="nav-all" class="nav-tab px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-rose-600 text-white shadow-md shadow-rose-600/20 transition-all cursor-pointer">
+            <i class="fa-solid fa-compass mr-1.5"></i>Explore
+          </button>
+          <button onclick="switchCollectionView('watchlist')" id="nav-watchlist" class="nav-tab px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800/70 text-slate-300 hover:bg-slate-800 hover:text-white transition-all cursor-pointer flex items-center gap-1.5">
+            <i class="fa-solid fa-bookmark text-amber-400"></i>
+            <span class="hidden sm:inline">Watchlist</span>
+            <span id="watchlistBadge" class="px-1.5 py-0.5 text-[11px] rounded-full bg-amber-500/20 text-amber-300 font-bold">0</span>
+          </button>
+          <button onclick="switchCollectionView('favorites')" id="nav-favorites" class="nav-tab px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800/70 text-slate-300 hover:bg-slate-800 hover:text-white transition-all cursor-pointer flex items-center gap-1.5">
+            <i class="fa-solid fa-heart text-rose-500"></i>
+            <span class="hidden sm:inline">Favorites</span>
+            <span id="favoritesBadge" class="px-1.5 py-0.5 text-[11px] rounded-full bg-rose-500/20 text-rose-300 font-bold">0</span>
+          </button>
+          <button onclick="returnToGateway()" title="Back to Dimension Gate" class="p-2.5 rounded-xl bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-700 transition-all cursor-pointer">
+            <i class="fa-solid fa-door-open"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SEARCH & CATEGORY BANNER -->
+    <section class="relative bg-gradient-to-b from-[#0F1626] via-[#090D16] to-[#07090E] pt-8 pb-6 border-b border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Prominent Search Bar -->
+        <div class="max-w-3xl mx-auto mb-7">
+          <div class="relative flex items-center">
+            <i class="fa-solid fa-magnifying-glass absolute left-5 text-slate-400 text-lg"></i>
+            <input
+              type="text"
+              id="searchInput"
+              oninput="applyFilters()"
+              placeholder="Search movies, hero, heroine, director (e.g., Prabhas, Salaar, Kalki, Pushpa 2, Avengers)..."
+              class="w-full pl-14 pr-24 py-4 rounded-2xl bg-[#131A29] border border-slate-700/80 text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/30 shadow-xl transition-all"
+            />
+            <button
+              id="clearSearchBtn"
+              onclick="clearSearch()"
+              class="hidden absolute right-4 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 cursor-pointer"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Movie Categories Row (Thrill, Horror, Romance, Adventure, Animation, Action, Sci-Fi) -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <i class="fa-solid fa-layer-group text-rose-500 mr-1.5"></i>Browse by Movie Category
+            </span>
+          </div>
+          <div id="categoryPills" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-2">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Advanced Filters Bar (Genre, Year, Minimum Rating, Sort, Reset) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 bg-[#111622]/90 p-3.5 rounded-2xl border border-slate-800/80">
+          <!-- Genre Filter -->
+          <div>
+            <label for="genreFilter" class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Genre</label>
+            <select id="genreFilter" onchange="syncCategoryWithDropdown()" class="w-full px-3 py-2 rounded-xl bg-[#192030] border border-slate-700 text-sm text-white focus:outline-none focus:border-amber-400 cursor-pointer">
+              <option value="All">All Genres</option>
+              <option value="Action">Action</option>
+              <option value="Thrill">Thrill</option>
+              <option value="Horror">Horror</option>
+              <option value="Romance">Romance</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Animation">Animation (Anime)</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+            </select>
+          </div>
+
+          <!-- Release Year Filter -->
+          <div>
+            <label for="yearFilter" class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Release Year</label>
+            <select id="yearFilter" onchange="applyFilters()" class="w-full px-3 py-2 rounded-xl bg-[#192030] border border-slate-700 text-sm text-white focus:outline-none focus:border-amber-400 cursor-pointer">
+              <option value="All">All Years</option>
+              <option value="2026">2026 (Upcoming / New)</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2021">2021</option>
+              <option value="2019">2019</option>
+              <option value="2015">2015 - 2018</option>
+            </select>
+          </div>
+
+          <!-- Minimum Rating Filter -->
+          <div>
+            <label for="ratingFilter" class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Min Rating</label>
+            <select id="ratingFilter" onchange="applyFilters()" class="w-full px-3 py-2 rounded-xl bg-[#192030] border border-slate-700 text-sm text-white focus:outline-none focus:border-amber-400 cursor-pointer">
+              <option value="0">Any Rating</option>
+              <option value="9.0">9.0+ Masterpiece</option>
+              <option value="8.5">8.5+ Blockbuster</option>
+              <option value="8.0">8.0+ Hit</option>
+              <option value="7.5">7.5+ Worth Watching</option>
+            </select>
+          </div>
+
+          <!-- Industry Filter -->
+          <div>
+            <label for="industryFilter" class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Universe</label>
+            <select id="industryFilter" onchange="applyFilters()" class="w-full px-3 py-2 rounded-xl bg-[#192030] border border-slate-700 text-sm text-white focus:outline-none focus:border-amber-400 cursor-pointer">
+              <option value="All">All Universes</option>
+              <option value="Tollywood">Tollywood / Pan-India</option>
+              <option value="Hollywood">Hollywood</option>
+              <option value="Anime">Anime Dimension</option>
+            </select>
+          </div>
+
+          <!-- Reset Filters Button -->
+          <div class="col-span-2 sm:col-span-4 lg:col-span-1 flex items-end">
+            <button onclick="resetAllFilters()" class="w-full py-2 px-4 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>Reset Filters</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT: MOVIE POSTERS GRID -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Section Header & Result Count -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 id="sectionHeading" class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-1.5 h-7 rounded-full bg-gradient-to-b from-rose-500 to-amber-500"></span>
+            <span>Featured Movie Dimension</span>
+          </h2>
+          <p id="sectionSubheading" class="text-xs sm:text-sm text-slate-400 mt-1">
+            Click any movie poster to explore story, cast (Hero & Heroine), trailer, and related movies.
+          </p>
+        </div>
+        <div class="px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-semibold text-amber-400">
+          Showing <span id="movieCount">0</span> Movies
+        </div>
+      </div>
+
+      <!-- Movie Cards Grid -->
+      <div id="moviesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+        <!-- Movie cards rendered here -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden py-20 text-center">
+        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400 text-3xl">
+          <i class="fa-solid fa-film"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">No Movies Found in This Dimension</h3>
+        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">
+          Try adjusting your search keywords, genre category, release year, or rating filter.
+        </p>
+        <button onclick="resetAllFilters()" class="px-6 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-sm transition-all cursor-pointer">
+          Show All Movies
+        </button>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-[#05070B] py-8 mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-ticket text-rose-500"></i>
+          <span class="font-cinematic font-bold text-white text-sm">NELA TICKET</span>
+          <span>— Ultimate Cinema & Anime Dimension</span>
+        </div>
+        <p>Featuring Pan-India Blockbusters, Hollywood Epics & Anime Classics.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 3. MOVIE DETAILS MODAL (POSTER, STORY, CAST, TRAILER, RELATED MOVIES) -->
+  <!-- ===================================================================== -->
+  <div id="movieModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/85 backdrop-blur-md p-3 sm:p-6">
+    <div class="relative max-w-5xl mx-auto my-4 sm:my-8 bg-[#0E131F] border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+      <!-- Close Modal Button -->
+      <button onclick="closeMovieModal()" aria-label="Close modal" class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/70 hover:bg-rose-600 text-white flex items-center justify-center border border-white/15 transition-colors cursor-pointer">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- Modal Dynamic Content -->
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 pointer-events-none transform translate-y-10 opacity-0 transition-all duration-300">
+    <div class="px-5 py-3 rounded-2xl bg-[#161E31] border border-amber-500/40 text-white text-sm font-medium shadow-2xl flex items-center gap-3">
+      <i id="toastIcon" class="fa-solid fa-circle-check text-amber-400"></i>
+      <span id="toastMessage">Added to Watchlist</span>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC & CURATED REAL MOVIES DATABASE                      -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * Generates a rich, high-resolution custom cinematic SVG poster data URI
+     * used as an automatic seamless fallback if an external poster URL is blocked by network/CORS.
+     */
+    function createCinematicPosterSVG(title, subtitle, palette, badgeText) {
+      const [c1, c2, accent] = palette;
+      const safeTitle = title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeSub = subtitle.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600">
+          <defs>
+            <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="${c1}" />
+              <stop offset="55%" stop-color="${c2}" />
+              <stop offset="100%" stop-color="#06080F" />
+            </linearGradient>
+            <radialGradient id="glow" cx="50%" cy="35%" r="55%">
+              <stop offset="0%" stop-color="${accent}" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="${accent}" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="45%" stop-color="#06080F" stop-opacity="0" />
+              <stop offset="100%" stop-color="#06080F" stop-opacity="0.96" />
+            </linearGradient>
+          </defs>
+          <rect width="400" height="600" fill="url(#bg)" />
+          <rect width="400" height="600" fill="url(#glow)" />
+          <!-- Geometric Cinema Crest -->
+          <circle cx="200" cy="215" r="105" fill="none" stroke="${accent}" stroke-width="2" stroke-opacity="0.45" />
+          <circle cx="200" cy="215" r="82" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="6 6" />
+          <polygon points="200,135 268,255 132,255" fill="none" stroke="${accent}" stroke-width="2.5" stroke-opacity="0.75" />
+          <rect width="400" height="600" fill="url(#fade)" />
+          <!-- Top Tag -->
+          <rect x="24" y="24" width="136" height="28" rx="14" fill="rgba(0,0,0,0.55)" stroke="${accent}" stroke-width="1" />
+          <text x="92" y="42" fill="${accent}" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="1.5">${badgeText}</text>
+          <!-- Movie Typography -->
+          <text x="200" y="475" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="bold" text-anchor="middle" letter-spacing="2">${safeTitle.toUpperCase()}</text>
+          <line x1="110" y1="495" x2="290" y2="495" stroke="${accent}" stroke-width="2" />
+          <text x="200" y="522" fill="#CBD5E1" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="2">${safeSub.toUpperCase()}</text>
+          <text x="200" y="565" fill="#94A3B8" font-family="sans-serif" font-size="10" text-anchor="middle" letter-spacing="3">NELA TICKET EXCLUSIVE</text>
+        </svg>
+      `;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg.trim());
+    }
+
+    /**
+     * Complete Real Movie & Anime Dataset
+     * Includes Baahubali, Salaar, Kalki 2898 AD, Saaho, Spirit, Varanasi, Devara,
+     * Dragon (Drogon), Pushpa, Pushpa 2, Raaka, Kaakha Kaakha, Avengers, Avengers: Doomsday, and Anime!
+     */
+    const MOVIES_DATA = [
+      {
+        id: 'baahubali',
+        title: 'Baahubali: The Beginning',
+        year: 2015,
+        rating: 9.2,
+        category: 'Adventure',
+        genres: ['Adventure', 'Action'],
+        industry: 'Tollywood',
+        duration: '2h 39m',
+        hero: 'Prabhas',
+        heroine: 'Tamannaah Bhatia & Anushka Shetty',
+        director: 'S. S. Rajamouli',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/5/5f/Baahubali_The_Beginning_poster.jpg',
+        fallbackPalette: ['#451A03', '#78350F', '#F59E0B'],
+        story: 'In the ancient kingdom of Mahishmati, Shivudu, a brave young man raised by tribal villagers, scales a colossal waterfall and discovers his royal heritage as the son of the legendary warrior king Amarendra Baahubali.',
+        trailerUrl: 'https://www.youtube.com/embed/sOEg_YZQsTI',
+        relatedIds: ['salaar', 'kalki', 'devara', 'varanasi']
+      },
+      {
+        id: 'salaar',
+        title: 'Salaar: Part 1 – Ceasefire',
+        year: 2023,
+        rating: 8.9,
+        category: 'Action',
+        genres: ['Action', 'Thrill'],
+        industry: 'Tollywood',
+        duration: '2h 55m',
+        hero: 'Prabhas',
+        heroine: 'Shruti Haasan',
+        director: 'Prashanth Neel',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Salaar_Part_1_%E2%80%93_Ceasefire.jpg',
+        fallbackPalette: ['#18181B', '#27272A', '#EF4444'],
+        story: 'Set in the dystopian city-state of Khansaar, a fiercely loyal warrior named Deva fulfills a childhood promise to his best friend Vardharaja Mannar by unleashing unstoppable fury against ruthless warlords.',
+        trailerUrl: 'https://www.youtube.com/embed/4GPvYMKtrtI',
+        relatedIds: ['kalki', 'saaho', 'baahubali', 'spirit']
+      },
+      {
+        id: 'kalki',
+        title: 'Kalki 2898 AD',
+        year: 2024,
+        rating: 9.1,
+        category: 'Sci-Fi',
+        genres: ['Sci-Fi', 'Adventure', 'Action'],
+        industry: 'Tollywood',
+        duration: '3h 01m',
+        hero: 'Prabhas & Amitabh Bachchan',
+        heroine: 'Deepika Padukone & Disha Patani',
+        director: 'Nag Ashwin',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/4/4c/Kalki_2898_AD.jpg',
+        fallbackPalette: ['#2E1065', '#4C1D95', '#FBBF24'],
+        story: 'In the year 2898 AD, inside the desert city of Kasi—the last surviving city on Earth—a bounty hunter named Bhairava crosses paths with the immortal Ashwatthama while protecting the mother of the prophesied avatar Kalki.',
+        trailerUrl: 'https://www.youtube.com/embed/kQDd1AhGIHk',
+        relatedIds: ['salaar', 'baahubali', 'avengers-doomsday', 'varanasi']
+      },
+      {
+        id: 'pushpa',
+        title: 'Pushpa: The Rise',
+        year: 2021,
+        rating: 8.7,
+        category: 'Action',
+        genres: ['Action', 'Thrill'],
+        industry: 'Tollywood',
+        duration: '2h 59m',
+        hero: 'Allu Arjun',
+        heroine: 'Rashmika Mandanna',
+        director: 'Sukumar',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/7/75/Pushpa_-_The_Rise_%282021_film%29.jpg',
+        fallbackPalette: ['#450A0A', '#7F1D1D', '#F97316'],
+        story: 'Pushpa Raj, a fearless daily-wage laborer in the Seshachalam forests, rises relentlessly through the dangerous red sandalwood smuggling syndicate while clashing with ruthless police officer Bhanwar Singh Shekhawat.',
+        trailerUrl: 'https://www.youtube.com/embed/pKctjlxbFDQ',
+        relatedIds: ['pushpa-2', 'devara', 'salaar', 'dragon']
+      },
+      {
+        id: 'pushpa-2',
+        title: 'Pushpa 2: The Rule',
+        year: 2024,
+        rating: 9.3,
+        category: 'Action',
+        genres: ['Action', 'Thrill'],
+        industry: 'Tollywood',
+        duration: '3h 20m',
+        hero: 'Allu Arjun',
+        heroine: 'Rashmika Mandanna',
+        director: 'Sukumar',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/1/11/Pushpa_2-_The_Rule.jpg',
+        fallbackPalette: ['#7C2D12', '#9A3412', '#FACC15'],
+        story: 'Now ruling the international red sandalwood empire, Pushpa Raj expands his syndicate across borders while defending his family and honor in an explosive showdown with SP Bhanwar Singh Shekhawat.',
+        trailerUrl: 'https://www.youtube.com/embed/g3JUbgOHgdw',
+        relatedIds: ['pushpa', 'devara', 'salaar', 'spirit']
+      },
+      {
+        id: 'devara',
+        title: 'Devara: Part 1',
+        year: 2024,
+        rating: 8.6,
+        category: 'Action',
+        genres: ['Action', 'Thrill', 'Adventure'],
+        industry: 'Tollywood',
+        duration: '2h 57m',
+        hero: 'N. T. Rama Rao Jr. (Jr NTR)',
+        heroine: 'Janhvi Kapoor',
+        director: 'Koratala Siva',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/f/f0/Devara_Part_1.jpg',
+        fallbackPalette: ['#082F49', '#0C4A6E', '#38BDF8'],
+        story: 'Along the treacherous Red Sea coast, Devara stands as a feared protector who turns against smuggling arms to save his people—leaving behind a legacy of fear that binds his son Vara.',
+        trailerUrl: 'https://www.youtube.com/embed/5cx7rvMvAWo',
+        relatedIds: ['pushpa-2', 'baahubali', 'dragon', 'salaar']
+      },
+      {
+        id: 'saaho',
+        title: 'Saaho',
+        year: 2019,
+        rating: 8.1,
+        category: 'Thrill',
+        genres: ['Thrill', 'Action'],
+        industry: 'Tollywood',
+        duration: '2h 50m',
+        hero: 'Prabhas',
+        heroine: 'Shraddha Kapoor',
+        director: 'Sujeeth',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/6/6b/Saaho_poster.jpg',
+        fallbackPalette: ['#0F172A', '#1E293B', '#38BDF8'],
+        story: 'An undercover cop becomes embroiled in a high-stakes battle among ruthless crime lords in Waaji City over a stolen fortune of two lakh crores and a mysterious black box.',
+        trailerUrl: 'https://www.youtube.com/embed/lD0-ztCFydA',
+        relatedIds: ['salaar', 'kalki', 'spirit', 'kaakha']
+      },
+      {
+        id: 'spirit',
+        title: 'Spirit',
+        year: 2026,
+        rating: 9.2,
+        category: 'Thrill',
+        genres: ['Thrill', 'Action'],
+        industry: 'Tollywood',
+        duration: '2h 48m',
+        hero: 'Prabhas',
+        heroine: 'Triptii Dimri',
+        director: 'Sandeep Reddy Vanga',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Salaar_Part_1_%E2%80%93_Ceasefire.jpg',
+        fallbackPalette: ['#1E1B4B', '#312E81', '#F43F5E'],
+        story: 'An uncompromising, fierce IPS officer wages a raw, relentless war against an international crime syndicate, pushing justice beyond conventional boundaries.',
+        trailerUrl: 'https://www.youtube.com/embed/4GPvYMKtrtI',
+        relatedIds: ['salaar', 'saaho', 'kaakha', 'pushpa-2']
+      },
+      {
+        id: 'varanasi',
+        title: 'Varanasi (SSMB29)',
+        year: 2026,
+        rating: 9.4,
+        category: 'Adventure',
+        genres: ['Adventure', 'Action'],
+        industry: 'Tollywood',
+        duration: '3h 05m',
+        hero: 'Mahesh Babu',
+        heroine: 'Priyanka Chopra Jonas',
+        director: 'S. S. Rajamouli',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/5/5f/Baahubali_The_Beginning_poster.jpg',
+        fallbackPalette: ['#422006', '#713F12', '#F59E0B'],
+        story: 'From the sacred ghats of Varanasi to uncharted jungles across the globe, a daring explorer embarks on a high-octane Indiana Jones-style expedition to uncover ancient mythological secrets.',
+        trailerUrl: 'https://www.youtube.com/embed/sOEg_YZQsTI',
+        relatedIds: ['baahubali', 'kalki', 'devara', 'dragon']
+      },
+      {
+        id: 'dragon',
+        title: 'Dragon (Drogon)',
+        year: 2026,
+        rating: 9.0,
+        category: 'Action',
+        genres: ['Action', 'Thrill'],
+        industry: 'Tollywood',
+        duration: '2h 45m',
+        hero: 'N. T. Rama Rao Jr. (Jr NTR)',
+        heroine: 'Rukmini Vasanth',
+        director: 'Prashanth Neel',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/f/f0/Devara_Part_1.jpg',
+        fallbackPalette: ['#3B0764', '#581C87', '#FB7185'],
+        story: 'In a dark, fire-forged underworld empire, a man bearing the mark of the Dragon rises from the ashes to dismantle a tyrannical cartel.',
+        trailerUrl: 'https://www.youtube.com/embed/5cx7rvMvAWo',
+        relatedIds: ['devara', 'salaar', 'pushpa-2', 'raaka']
+      },
+      {
+        id: 'raaka',
+        title: 'Raaka',
+        year: 2025,
+        rating: 8.4,
+        category: 'Horror',
+        genres: ['Horror', 'Thrill'],
+        industry: 'Tollywood',
+        duration: '2h 24m',
+        hero: 'Sundeep Kishan',
+        heroine: 'Ritu Varma',
+        director: 'Vassishta',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/4/4c/Kalki_2898_AD.jpg',
+        fallbackPalette: ['#090D16', '#3F1D2E', '#E11D48'],
+        story: 'When an ancient occult seal is broken inside a forgotten forest temple, a fearless investigator must confront a vengeful supernatural force before the blood moon rises.',
+        trailerUrl: 'https://www.youtube.com/embed/kQDd1AhGIHk',
+        relatedIds: ['kaakha', 'dragon', 'spirit', 'devara']
+      },
+      {
+        id: 'kaakha',
+        title: 'Kaakha Kaakha',
+        year: 2015,
+        rating: 8.6,
+        category: 'Thrill',
+        genres: ['Thrill', 'Romance', 'Action'],
+        industry: 'Tollywood',
+        duration: '2h 34m',
+        hero: 'Suriya',
+        heroine: 'Jyothika',
+        director: 'Gautham Vasudev Menon',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/6/6b/Saaho_poster.jpg',
+        fallbackPalette: ['#064E3B', '#065F46', '#34D399'],
+        story: 'ACP Anbuselvan, an elite narcotics officer, finds tenderness and love with schoolteacher Maya—until a ruthless gangster targets everyone he holds dear.',
+        trailerUrl: 'https://www.youtube.com/embed/lD0-ztCFydA',
+        relatedIds: ['saaho', 'spirit', 'sita-ramam', 'raaka']
+      },
+      {
+        id: 'avengers-endgame',
+        title: 'Avengers: Endgame',
+        year: 2019,
+        rating: 9.4,
+        category: 'Adventure',
+        genres: ['Adventure', 'Sci-Fi', 'Action'],
+        industry: 'Hollywood',
+        duration: '3h 01m',
+        hero: 'Robert Downey Jr. & Chris Evans',
+        heroine: 'Scarlett Johansson & Brie Larson',
+        director: 'Anthony & Joe Russo',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg',
+        fallbackPalette: ['#1E1B4B', '#4C1D95', '#A855F7'],
+        story: 'After Thanos wipes out half of all life in the universe, the remaining Avengers assemble once more for a daring time-heist across the quantum realm to restore reality.',
+        trailerUrl: 'https://www.youtube.com/embed/TcMBFSGVi1c',
+        relatedIds: ['avengers-doomsday', 'kalki', 'baahubali', 'spider-verse']
+      },
+      {
+        id: 'avengers-doomsday',
+        title: 'Avengers: Doomsday',
+        year: 2026,
+        rating: 9.5,
+        category: 'Sci-Fi',
+        genres: ['Sci-Fi', 'Adventure', 'Action'],
+        industry: 'Hollywood',
+        duration: '2h 55m',
+        hero: 'Robert Downey Jr. (Doctor Doom) & Benedict Cumberbatch',
+        heroine: 'Florence Pugh & Vanessa Kirby',
+        director: 'Anthony & Joe Russo',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg',
+        fallbackPalette: ['#022C22', '#064E3B', '#10B981'],
+        story: 'As multiversal incursions threaten to collapse all realities, Earth’s mightiest heroes face their greatest existential threat yet: the brilliant and ruthless Victor Von Doom.',
+        trailerUrl: 'https://www.youtube.com/embed/TcMBFSGVi1c',
+        relatedIds: ['avengers-endgame', 'kalki', 'salaar', 'spider-verse']
+      },
+      {
+        id: 'sita-ramam',
+        title: 'Sita Ramam',
+        year: 2023,
+        rating: 9.0,
+        category: 'Romance',
+        genres: ['Romance', 'Adventure'],
+        industry: 'Tollywood',
+        duration: '2h 43m',
+        hero: 'Dulquer Salmaan',
+        heroine: 'Mrunal Thakur & Rashmika Mandanna',
+        director: 'Hanu Raghavapudi',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/5/5f/Baahubali_The_Beginning_poster.jpg',
+        fallbackPalette: ['#831843', '#9D174D', '#F472B6'],
+        story: 'An orphan soldier stationed at the Kashmir border receives heartwarming letters from a mysterious woman named Sita Mahalakshmi, igniting an unforgettable timeless love story.',
+        trailerUrl: 'https://www.youtube.com/embed/Ljk6tGZ1l3A',
+        relatedIds: ['kaakha', 'your-name', 'baahubali', 'varanasi']
+      },
+      {
+        id: 'conjuring',
+        title: 'The Conjuring',
+        year: 2015,
+        rating: 8.5,
+        category: 'Horror',
+        genres: ['Horror', 'Thrill'],
+        industry: 'Hollywood',
+        duration: '1h 52m',
+        hero: 'Patrick Wilson',
+        heroine: 'Vera Farmiga',
+        director: 'James Wan',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/8/8c/The_Conjuring_poster.jpg',
+        fallbackPalette: ['#18181B', '#3F3F46', '#DC2626'],
+        story: 'Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their secluded Rhode Island farmhouse.',
+        trailerUrl: 'https://www.youtube.com/embed/k10ETZ41q5o',
+        relatedIds: ['raaka', 'spirit', 'kaakha', 'saaho']
+      },
+      {
+        id: 'demon-slayer',
+        title: 'Demon Slayer: Mugen Train (Anime)',
+        year: 2021,
+        rating: 9.2,
+        category: 'Animation',
+        genres: ['Animation', 'Action', 'Adventure'],
+        industry: 'Anime',
+        duration: '1h 57m',
+        hero: 'Tanjiro Kamado & Kyojuro Rengoku',
+        heroine: 'Nezuko Kamado',
+        director: 'Haruo Sotozaki',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/2/21/Kimetsu_no_Yaiba_Mugen_Ressha_Hen_Poster.jpg',
+        fallbackPalette: ['#7F1D1D', '#B91C1C', '#F59E0B'],
+        story: 'Tanjiro Kamado and his companions join the Flame Hashira Kyojuro Rengoku aboard the mysterious Infinity Train to confront a powerful demon lurking in passengers’ dreams.',
+        trailerUrl: 'https://www.youtube.com/embed/ATJYac_dORw',
+        relatedIds: ['your-name', 'spider-verse', 'kalki', 'avengers-endgame']
+      },
+      {
+        id: 'your-name',
+        title: 'Your Name (Kimi no Na wa)',
+        year: 2019,
+        rating: 9.3,
+        category: 'Animation',
+        genres: ['Animation', 'Romance', 'Adventure'],
+        industry: 'Anime',
+        duration: '1h 52m',
+        hero: 'Taki Tachibana',
+        heroine: 'Mitsuha Miyamizu',
+        director: 'Makoto Shinkai',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/0/0b/Your_Name_poster.png',
+        fallbackPalette: ['#1E3A8A', '#3B82F6', '#F472B6'],
+        story: 'Two teenagers living worlds apart in Tokyo and rural Japan mysteriously begin swapping bodies in their dreams, forging a cosmic bond across time and space.',
+        trailerUrl: 'https://www.youtube.com/embed/xU47nhruN-Q',
+        relatedIds: ['demon-slayer', 'sita-ramam', 'spider-verse', 'avengers-doomsday']
+      },
+      {
+        id: 'spider-verse',
+        title: 'Spider-Man: Across the Spider-Verse',
+        year: 2023,
+        rating: 9.1,
+        category: 'Animation',
+        genres: ['Animation', 'Adventure', 'Sci-Fi'],
+        industry: 'Hollywood',
+        duration: '2h 20m',
+        hero: 'Miles Morales',
+        heroine: 'Gwen Stacy',
+        director: 'Joaquim Dos Santos',
+        poster: 'https://upload.wikimedia.org/wikipedia/en/b/b4/Spider-Man-_Across_the_Spider-Verse_poster.jpg',
+        fallbackPalette: ['#4C0519', '#9F1239', '#38BDF8'],
+        story: 'Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.',
+        trailerUrl: 'https://www.youtube.com/embed/cqGjhVJWtEg',
+        relatedIds: ['demon-slayer', 'your-name', 'avengers-doomsday', 'avengers-endgame']
+      }
+    ];
+
+    // Pre-generate fallback SVG posters for each movie so every poster is 100% guaranteed to display
+    MOVIES_DATA.forEach(movie => {
+      movie.fallbackPoster = createCinematicPosterSVG(
+        movie.title,
+        `${movie.year} • ${movie.category}`,
+        movie.fallbackPalette,
+        movie.industry.toUpperCase()
+      );
+    });
+
+    // Categories List (Includes Thrill, Horror, Romance, Adventure, Animation as requested)
+    const CATEGORIES = [
+      { id: 'All', label: 'All Movies', icon: 'fa-clapperboard' },
+      { id: 'Thrill', label: 'Thrill', icon: 'fa-bolt' },
+      { id: 'Horror', label: 'Horror', icon: 'fa-ghost' },
+      { id: 'Romance', label: 'Romance', icon: 'fa-heart' },
+      { id: 'Adventure', label: 'Adventure', icon: 'fa-compass' },
+      { id: 'Animation', label: 'Animation / Anime', icon: 'fa-dragon' },
+      { id: 'Action', label: 'Action', icon: 'fa-fire' },
+      { id: 'Sci-Fi', label: 'Sci-Fi', icon: 'fa-rocket' }
+    ];
+
+    // Application State
+    let state = {
+      activeCategory: 'All',
+      activeView: 'all', // 'all' | 'watchlist' | 'favorites'
+      watchlist: JSON.parse(localStorage.getItem('nelaTicket_watchlist') || '[]'),
+      favorites: JSON.parse(localStorage.getItem('nelaTicket_favorites') || '[]')
+    };
+
+    // =========================================================================
+    // GATEWAY TRANSITION FUNCTIONS
+    // =========================================================================
+    function enterMovieDimension() {
+      const gateway = document.getElementById('dimensionGateway');
+      const mainApp = document.getElementById('mainApp');
+
+      gateway.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+      mainApp.classList.remove('hidden');
+
+      setTimeout(() => {
+        gateway.classList.add('hidden');
+      }, 650);
+
+      showToast('Welcome to NELA TICKET Movie Dimension!', 'fa-ticket');
+    }
+
+    function returnToGateway() {
+      const gateway = document.getElementById('dimensionGateway');
+      const mainApp = document.getElementById('mainApp');
+
+      gateway.classList.remove('hidden');
+      // Force reflow for smooth fade in
+      void gateway.offsetWidth;
+      gateway.classList.remove('opacity-0', 'scale-105', 'pointer-events-none');
+      mainApp.classList.add('hidden');
+    }
+
+    // =========================================================================
+    // INITIALIZATION & RENDERING
+    // =========================================================================
+    function initApp() {
+      renderCategoryPills();
+      updateCollectionBadges();
+      applyFilters();
+    }
+
+    function renderCategoryPills() {
+      const container = document.getElementById('categoryPills');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = state.activeCategory === cat.id;
+        return `
+          <button
+            onclick="selectCategory('${cat.id}')"
+            class="shrink-0 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 border transition-all cursor-pointer ${
+              isActive
+                ? 'bg-gradient-to-r from-rose-600 to-amber-500 text-white border-transparent shadow-lg shadow-rose-600/25'
+                : 'bg-[#131A29] text-slate-300 border-slate-800 hover:border-slate-600 hover:text-white'
+            }"
+          >
+            <i class="fa-solid ${cat.icon} ${isActive ? 'text-white' : 'text-amber-400'}"></i>
+            <span>${cat.label}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(catId) {
+      state.activeCategory = catId;
+      document.getElementById('genreFilter').value = catId;
+      renderCategoryPills();
+      applyFilters();
+    }
+
+    function syncCategoryWithDropdown() {
+      const selected = document.getElementById('genreFilter').value;
+      state.activeCategory = selected;
+      renderCategoryPills();
+      applyFilters();
+    }
+
+    function switchCollectionView(view) {
+      state.activeView = view;
+
+      // Update active button styles
+      ['all', 'watchlist', 'favorites'].forEach(tab => {
+        const btn = document.getElementById(`nav-${tab}`);
+        if (tab === view) {
+          btn.className = 'nav-tab px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-rose-600 text-white shadow-md shadow-rose-600/20 transition-all cursor-pointer flex items-center gap-1.5';
+        } else {
+          btn.className = 'nav-tab px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800/70 text-slate-300 hover:bg-slate-800 hover:text-white transition-all cursor-pointer flex items-center gap-1.5';
+        }
+      });
+
+      const heading = document.getElementById('sectionHeading').querySelector('span:last-child');
+      const subheading = document.getElementById('sectionSubheading');
+
+      if (view === 'watchlist') {
+        heading.textContent = 'My Saved Watchlist';
+        subheading.textContent = 'Movies you queued up to watch next in NELA TICKET.';
+      } else if (view === 'favorites') {
+        heading.textContent = 'My Favorite Blockbusters';
+        subheading.textContent = 'Your all-time favorite movies and anime.';
+      } else {
+        heading.textContent = 'Featured Movie Dimension';
+        subheading.textContent = 'Click any movie poster to explore story, cast (Hero & Heroine), trailer, and related movies.';
+      }
+
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+      const yearVal = document.getElementById('yearFilter').value;
+      const minRating = parseFloat(document.getElementById('ratingFilter').value) || 0;
+      const industryVal = document.getElementById('industryFilter').value;
+      const clearBtn = document.getElementById('clearSearchBtn');
+
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      const filtered = MOVIES_DATA.filter(movie => {
+        // Collection tab filter
+        if (state.activeView === 'watchlist' && !state.watchlist.includes(movie.id)) return false;
+        if (state.activeView === 'favorites' && !state.favorites.includes(movie.id)) return false;
+
+        // Category / Genre filter
+        if (state.activeCategory !== 'All' && !movie.genres.includes(state.activeCategory)) {
+          return false;
+        }
+
+        // Year filter
+        if (yearVal !== 'All') {
+          if (yearVal === '2015') {
+            if (movie.year < 2015 || movie.year > 2018) return false;
+          } else if (movie.year !== parseInt(yearVal, 10)) {
+            return false;
+          }
+        }
+
+        // Rating filter
+        if (movie.rating < minRating) return false;
+
+        // Industry filter
+        if (industryVal !== 'All' && movie.industry !== industryVal) return false;
+
+        // Search query (Title, Hero, Heroine, Director, Category)
+        if (searchQuery) {
+          const haystack = `${movie.title} ${movie.hero} ${movie.heroine} ${movie.director} ${movie.genres.join(' ')} ${movie.industry}`.toLowerCase();
+          if (!haystack.includes(searchQuery)) return false;
+        }
+
+        return true;
+      });
+
+      renderMoviesGrid(filtered);
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      applyFilters();
+    }
+
+    function resetAllFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('genreFilter').value = 'All';
+      document.getElementById('yearFilter').value = 'All';
+      document.getElementById('ratingFilter').value = '0';
+      document.getElementById('industryFilter').value = 'All';
+      state.activeCategory = 'All';
+      switchCollectionView('all');
+      renderCategoryPills();
+      applyFilters();
+    }
+
+    // =========================================================================
+    // MOVIE CARDS RENDERER
+    // =========================================================================
+    function renderMoviesGrid(movies) {
+      const grid = document.getElementById('moviesGrid');
+      const emptyState = document.getElementById('emptyState');
+      document.getElementById('movieCount').textContent = movies.length;
+
+      if (movies.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = movies.map(movie => {
+        const inWatchlist = state.watchlist.includes(movie.id);
+        const inFavorites = state.favorites.includes(movie.id);
+
+        return `
+          <article onclick="openMovieModal('${movie.id}')" class="movie-card group bg-[#111622] rounded-2xl border border-slate-800/90 overflow-hidden cursor-pointer flex flex-col">
+            <!-- Poster Container -->
+            <div class="poster-wrapper w-full">
+              <img
+                src="${movie.poster}"
+                alt="${movie.title} Poster"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='${movie.fallbackPoster}';"
+                class="w-full h-full object-cover"
+              />
+
+              <!-- Top Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[#111622] via-transparent to-black/40 opacity-90"></div>
+
+              <!-- Rating Badge -->
+              <div class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md border border-amber-500/40 flex items-center gap-1 text-xs font-bold text-amber-400">
+                <i class="fa-solid fa-star text-[10px]"></i>
+                <span>${movie.rating.toFixed(1)}</span>
+              </div>
+
+              <!-- Quick Action Buttons (Watchlist & Favorite) -->
+              <div class="absolute top-2.5 right-2.5 flex flex-col gap-1.5 z-10" onclick="event.stopPropagation()">
+                <button
+                  onclick="toggleWatchlist('${movie.id}')"
+                  title="${inWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}"
+                  class="w-8 h-8 rounded-full backdrop-blur-md border flex items-center justify-center transition-all cursor-pointer ${
+                    inWatchlist
+                      ? 'bg-amber-500 text-black border-amber-400 shadow-lg'
+                      : 'bg-black/65 text-white border-white/15 hover:bg-amber-500 hover:text-black'
+                  }"
+                >
+                  <i class="fa-solid fa-bookmark text-xs"></i>
+                </button>
+                <button
+                  onclick="toggleFavorite('${movie.id}')"
+                  title="${inFavorites ? 'Remove from Favorites' : 'Add to Favorites'}"
+                  class="w-8 h-8 rounded-full backdrop-blur-md border flex items-center justify-center transition-all cursor-pointer ${
+                    inFavorites
+                      ? 'bg-rose-600 text-white border-rose-500 shadow-lg'
+                      : 'bg-black/65 text-white border-white/15 hover:bg-rose-600'
+                  }"
+                >
+                  <i class="fa-solid fa-heart text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Category Tag at Bottom of Poster -->
+              <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-rose-600/90 text-white text-[10px] font-bold uppercase tracking-wider">
+                  ${movie.category}
+                </span>
+                <span class="px-2 py-0.5 rounded-md bg-black/75 text-slate-300 text-[10px] font-semibold">
+                  ${movie.year}
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Metadata -->
+            <div class="p-3.5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-white group-hover:text-amber-400 transition-colors line-clamp-1">
+                  ${movie.title}
+                </h3>
+                <p class="text-xs text-slate-400 mt-1 line-clamp-1">
+                  <span class="text-slate-300 font-medium">Hero:</span> ${movie.hero}
+                </p>
+                <p class="text-xs text-slate-400 mt-0.5 line-clamp-1">
+                  <span class="text-slate-300 font-medium">Heroine:</span> ${movie.heroine}
+                </p>
+              </div>
+
+              <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+                <span>${movie.industry}</span>
+                <span class="text-rose-400 font-semibold group-hover:translate-x-0.5 transition-transform">
+                  Details <i class="fa-solid fa-chevron-right text-[9px] ml-0.5"></i>
+                </span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // WATCHLIST & FAVORITES MANAGEMENT
+    // =========================================================================
+    function toggleWatchlist(movieId) {
+      const index = state.watchlist.indexOf(movieId);
+      const movie = MOVIES_DATA.find(m => m.id === movieId);
+      if (index === -1) {
+        state.watchlist.push(movieId);
+        showToast(`Added "${movie.title}" to Watchlist`, 'fa-bookmark');
+      } else {
+        state.watchlist.splice(index, 1);
+        showToast(`Removed "${movie.title}" from Watchlist`, 'fa-trash-can');
+      }
+      localStorage.setItem('nelaTicket_watchlist', JSON.stringify(state.watchlist));
+      updateCollectionBadges();
+      applyFilters();
+      // Refresh modal buttons if open
+      const modal = document.getElementById('movieModal');
+      if (!modal.classList.contains('hidden') && modal.dataset.currentId === movieId) {
+        openMovieModal(movieId);
+      }
+    }
+
+    function toggleFavorite(movieId) {
+      const index = state.favorites.indexOf(movieId);
+      const movie = MOVIES_DATA.find(m => m.id === movieId);
+      if (index === -1) {
+        state.favorites.push(movieId);
+        showToast(`Added "${movie.title}" to Favorites`, 'fa-heart');
+      } else {
+        state.favorites.splice(index, 1);
+        showToast(`Removed "${movie.title}" from Favorites`, 'fa-heart-crack');
+      }
+      localStorage.setItem('nelaTicket_favorites', JSON.stringify(state.favorites));
+      updateCollectionBadges();
+      applyFilters();
+      // Refresh modal buttons if open
+      const modal = document.getElementById('movieModal');
+      if (!modal.classList.contains('hidden') && modal.dataset.currentId === movieId) {
+        openMovieModal(movieId);
+      }
+    }
+
+    function updateCollectionBadges() {
+      document.getElementById('watchlistBadge').textContent = state.watchlist.length;
+      document.getElementById('favoritesBadge').textContent = state.favorites.length;
+    }
+
+    // =========================================================================
+    // MOVIE DETAILS MODAL (STORY, CAST, RATINGS, TRAILER & RELATED POSTERS)
+    // =========================================================================
+    function openMovieModal(movieId) {
+      const movie = MOVIES_DATA.find(m => m.id === movieId);
+      if (!movie) return;
+
+      const modal = document.getElementById('movieModal');
+      modal.dataset.currentId = movieId;
+      const modalBody = document.getElementById('modalBody');
+
+      const inWatchlist = state.watchlist.includes(movie.id);
+      const inFavorites = state.favorites.includes(movie.id);
+
+      // Resolve Related Movies with real posters
+      const relatedMovies = (movie.relatedIds || [])
+        .map(id => MOVIES_DATA.find(m => m.id === id))
+        .filter(Boolean);
+
+      modalBody.innerHTML = `
+        <!-- Top Hero Detail Section -->
+        <div class="relative p-5 sm:p-8 bg-gradient-to-br from-[#172033] via-[#0E131F] to-[#090D16]">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
+            <!-- Left: Main Movie Poster -->
+            <div class="md:col-span-4 max-w-[260px] mx-auto md:max-w-none w-full">
+              <div class="poster-wrapper rounded-2xl border border-slate-700/80 shadow-2xl">
+                <img
+                  src="${movie.poster}"
+                  alt="${movie.title}"
+                  onerror="this.onerror=null; this.src='${movie.fallbackPoster}';"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <!-- Right: Story, Cast, Ratings, Actions -->
+            <div class="md:col-span-8 flex flex-col justify-between">
+              <div>
+                <!-- Genre & Year Tags -->
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-star"></i> ${movie.rating.toFixed(1)} / 10 IMDb
+                  </span>
+                  <span class="px-3 py-1 rounded-full bg-rose-600/20 border border-rose-500/40 text-rose-300 text-xs font-semibold">
+                    ${movie.industry}
+                  </span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">
+                    ${movie.year} • ${movie.duration}
+                  </span>
+                  ${movie.genres.map(g => `<span class="px-2.5 py-1 rounded-full bg-white/5 text-slate-300 text-xs">${g}</span>`).join('')}
+                </div>
+
+                <!-- Title -->
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+                  ${movie.title}
+                </h2>
+
+                <!-- Story Information -->
+                <div class="mb-5">
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5">
+                    <i class="fa-solid fa-book-open mr-1.5"></i>Storyline
+                  </h4>
+                  <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    ${movie.story}
+                  </p>
+                </div>
+
+                <!-- Cast & Crew Grid (Hero, Heroine, Director) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                  <div class="p-3.5 rounded-2xl bg-[#131A29] border border-slate-800">
+                    <span class="block text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Hero (Lead Actor)</span>
+                    <span class="text-sm font-bold text-white mt-0.5 block">${movie.hero}</span>
+                  </div>
+                  <div class="p-3.5 rounded-2xl bg-[#131A29] border border-slate-800">
+                    <span class="block text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Heroine (Lead Actress)</span>
+                    <span class="text-sm font-bold text-white mt-0.5 block">${movie.heroine}</span>
+                  </div>
+                  <div class="p-3.5 rounded-2xl bg-[#131A29] border border-slate-800">
+                    <span class="block text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Director</span>
+                    <span class="text-sm font-bold text-amber-300 mt-0.5 block">${movie.director}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Watchlist & Favorite Interactive Buttons -->
+              <div class="flex flex-wrap items-center gap-3">
+                <button
+                  onclick="toggleWatchlist('${movie.id}')"
+                  class="px-5 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all cursor-pointer ${
+                    inWatchlist
+                      ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/25'
+                      : 'bg-slate-800 hover:bg-amber-500 text-white hover:text-black'
+                  }"
+                >
+                  <i class="fa-solid fa-bookmark"></i>
+                  <span>${inWatchlist ? 'Saved in Watchlist' : 'Add to Watchlist'}</span>
+                </button>
+
+                <button
+                  onclick="toggleFavorite('${movie.id}')"
+                  class="px-5 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all cursor-pointer ${
+                    inFavorites
+                      ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/30'
+                      : 'bg-slate-800 hover:bg-rose-600 text-white'
+                  }"
+                >
+                  <i class="fa-solid fa-heart"></i>
+                  <span>${inFavorites ? 'Favorited' : 'Add to Favorites'}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trailer Section -->
+        <div class="p-5 sm:p-8 border-t border-slate-800/80 bg-[#0A0E17]">
+          <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-brands fa-youtube text-rose-500 text-xl"></i>
+            <span>Official Trailer Preview</span>
+          </h3>
+          <div class="aspect-video w-full rounded-2xl overflow-hidden border border-slate-800 bg-black shadow-xl">
+            <iframe
+              class="w-full h-full"
+              src="${movie.trailerUrl}"
+              title="${movie.title} Official Trailer"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Related Movies Poster Grid (Matching User Reference Screenshot Layout) -->
+        <div class="p-5 sm:p-8 border-t border-slate-800/80 bg-[#07090E]">
+          <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-film text-amber-400"></i>
+            <span>Related Movies in Dimension</span>
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            ${relatedMovies.map(rel => `
+              <div onclick="openMovieModal('${rel.id}')" class="group cursor-pointer">
+                <div class="poster-wrapper rounded-2xl border border-slate-800 group-hover:border-amber-400/70 transition-all shadow-lg mb-2">
+                  <img
+                    src="${rel.poster}"
+                    alt="${rel.title} Poster"
+                    onerror="this.onerror=null; this.src='${rel.fallbackPoster}';"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/75 text-amber-400 text-[11px] font-bold">
+                    <i class="fa-solid fa-star text-[9px] mr-0.5"></i>${rel.rating.toFixed(1)}
+                  </div>
+                </div>
+                <h4 class="text-sm font-bold text-white group-hover:text-amber-400 transition-colors truncate">
+                  ${rel.title}
+                </h4>
+                <p class="text-[11px] text-slate-400 truncate">${rel.year} • ${rel.category}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMovieModal() {
+      const modal = document.getElementById('movieModal');
+      const modalBody = document.getElementById('modalBody');
+      modal.classList.add('hidden');
+      // Stop embedded trailer playback on close
+      modalBody.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    // Close modal when clicking backdrop or pressing Escape
+    document.getElementById('movieModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMovieModal();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMovieModal();
+      }
+    });
+
+    // =========================================================================
+    // TOAST NOTIFICATION HELPER
+    // =========================================================================
+    let toastTimeout;
+    function showToast(message, iconClass = 'fa-circle-check') {
+      const box = document.getElementById('toastBox');
+      const msgEl = document.getElementById('toastMessage');
+      const iconEl = document.getElementById('toastIcon');
+
+      msgEl.textContent = message;
+      iconEl.className = `fa-solid ${iconClass} text-amber-400`;
+
+      box.classList.remove('translate-y-10', 'opacity-0');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        box.classList.add('translate-y-10', 'opacity-0');
+      }, 2600);
+    }
+
+    // Boot application
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
